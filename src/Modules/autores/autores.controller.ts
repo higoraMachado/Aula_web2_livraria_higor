@@ -1,5 +1,6 @@
 import {
   Param,
+  Delete,
   Body,
   Post,
   Controller,
@@ -13,8 +14,7 @@ import { CriarAutorDto, AtualizarAutorDto } from './autores.dto';
 @Controller('autores')
 export class AutoresController {
   constructor(private readonly autoresService: AutoresService) {}
-
-  @Get('/listar-autores')
+  @Get('listar-Autores')
   listarAutores() {
     return this.autoresService.listarAutores();
   }
@@ -33,5 +33,10 @@ export class AutoresController {
     @Body() bodyRequest: AtualizarAutorDto,
   ) {
     return this.autoresService.atualizarAutor(idAutor, bodyRequest);
+  }
+
+  @Delete('deletar-autor/:id')
+  deletarAutor(@Param('id', ParseIntPipe) idAutor: number) {
+    return this.autoresService.deletarAutor(idAutor);
   }
 }

@@ -27,11 +27,10 @@ let autores = [
 export class AutoresService {
   listarAutores() {
     if (!autores) {
-      return 'não há autores cadastrados';
+      return 'autores não encontrado';
     }
     return autores;
   }
-
   listarAutor(id: number) {
     const autorEncontrado = autores.find((autor) => autor.id === id);
 
@@ -66,5 +65,12 @@ export class AutoresService {
       autorEncontrado.email = bodyRequest.email;
     }
     return autorEncontrado;
+  }
+  deletarAutor(idAutor: number) {
+    this.listarAutor(idAutor);
+
+    autores = autores.filter((autor) => autor.id !== idAutor);
+
+    return autores;
   }
 }
