@@ -9,7 +9,7 @@ import { autoresTabela } from './autores';
 
 export const livrosTabela = mssqlTable('livros', {
   id: int().primaryKey().identity(),
-  Idautor: int('id_autor')
+  idAutor: int('id_autor')
     .notNull()
     .references(() => autoresTabela.id),
   titulo: varchar('titulo', { length: 100 }).notNull(),
